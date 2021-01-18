@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.exercises.HumanTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2021-01-18T20:46:46" hostname="macbook-ericb.local" time="0.055">
+  <properties/>
+  <testcase name="lambdaSortReversed()" classname="com.exercises.HumanTest" time="0.024"/>
+  <testcase name="lambdaSortWithReferenceToStaticMethod()" classname="com.exercises.HumanTest" time="0.002"/>
+  <testcase name="lambdaSortWithReferenceToInstanceMethod()" classname="com.exercises.HumanTest" time="0.002"/>
+  <testcase name="lambdaSortWithTypeInference()" classname="com.exercises.HumanTest" time="0.002"/>
+  <testcase name="lambdaSortCompareByNameThenAge()" classname="com.exercises.HumanTest" time="0.002"/>
+  <testcase name="lambdaSortCompareByNameThenAgeWithChaining()" classname="com.exercises.HumanTest" time="0.01"/>
+  <testcase name="preLambdaSort()" classname="com.exercises.HumanTest" time="0.002"/>
+  <testcase name="lambdaSort()" classname="com.exercises.HumanTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
