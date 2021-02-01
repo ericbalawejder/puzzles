@@ -3,28 +3,65 @@ package com.exercises;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.nio.file.Path;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
 
 class DNA {
 
-    // Create an arbitrary size file of RNA
-    public static void main(String[] args) {
+    private static final Map<Character, Character> RNA_TRANSCRIPTION =
+            Map.of('C', 'G', 'G', 'C',
+                    'T', 'A', 'A', 'U'
+            );
 
-        String path = "src/com/exercises/java/RNA.txt";
+    public static void main(String[] args) throws IOException {
+        //String path = "src/main/java/com/exercises/DNA.txt";
+        //writeToFile(generateDNA2(8000, 80), path);
+        // Create readFile feature.
+
+        System.out.println(transcribe(generateDNA(100)));
     }
 
-    void writeToFile(String path) throws IOException {
-        FileWriter fileWriter = new FileWriter(path);
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.print("Some String");
-        //printWriter.printf("Product name is %s and its price is %d $", "iPhone", 1000);
+    static String transcribe(String dnaStrand) {
+        return dnaStrand.chars()
+                .mapToObj(c -> (char) c)
+                .map(c -> RNA_TRANSCRIPTION.getOrDefault(c, c))
+                .map(String::valueOf)
+                .collect(Collectors.joining());
+    }
+
+    private static String generateDNA(long length) {
+        final List<Character> dna = new ArrayList<>(RNA_TRANSCRIPTION.keySet());
+
+        return LongStream.rangeClosed(1, length)
+                .mapToObj(i -> dna.get((int) (dna.size() * Math.random())))
+                .collect(Collector.of(
+                        StringBuilder::new,
+                        StringBuilder::append,
+                        StringBuilder::append,
+                        StringBuilder::toString));
+    }
+
+    private static String generateDNA2(long length, int numberPerLine) {
+        final List<Character> dna = new ArrayList<>(RNA_TRANSCRIPTION.keySet());
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 1; i <= length; i++) {
+            Character nucleotide = dna.get((int) (dna.size() * Math.random()));
+            stringBuilder.append(nucleotide);
+            if (i % numberPerLine == 0) {
+                stringBuilder.append("\n");
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+    private static void writeToFile(String content, String path) throws IOException {
+        final PrintWriter printWriter = new PrintWriter(new FileWriter(path));
+        printWriter.print(content);
         printWriter.close();
     }
 
-    String generateDNA(BigInteger terms) {
-        final Set<Character> characterSet = Set.of('C', 'G', 'A', 'T');
-        return "";
-    }
 }
