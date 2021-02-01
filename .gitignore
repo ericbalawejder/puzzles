@@ -1,6 +1,21 @@
-.idea
-.iml
-.ipr
+### Gradle ###
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+### Gradle Patch ###
+**/build/
 
 # CMake
 cmake-build-*/
@@ -10,6 +25,9 @@ cmake-build-*/
 
 # IntelliJ
 out/
+.idea
+.iml
+.ipr
 
 # JIRA plugin
 atlassian-ide-plugin.xml

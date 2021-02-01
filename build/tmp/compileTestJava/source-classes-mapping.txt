@@ -1,7 +1,0 @@
-com/exercises/ComcastChallengeTest.java
- com.exercises.ComcastChallengeTest
-com/exercises/FactorialTest.java
- com.exercises.FactorialTest
-com/exercises/HumanTest.java
- com.exercises.HumanTest
- com.exercises.HumanTest$1
