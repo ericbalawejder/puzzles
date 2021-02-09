@@ -1,12 +1,14 @@
 package com.exercises;
 
+import java.util.Arrays;
+
 public class MergeArraysSorted {
 
     public static void main(String[] args) {
         int[] powerOfTwo = { 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 };
         int[] primes = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67 };
-        
-        print(mergeArrays(powerOfTwo, primes));
+
+        System.out.println(Arrays.toString(mergeArrays(powerOfTwo, primes)));
     }
 
     public static int[] mergeArrays(int[] myArray, int[] alicesArray) {
@@ -43,13 +45,6 @@ public class MergeArraysSorted {
             currentIndexMerged++;
         }
         return mergedArray;
-    }
-
-    public static void print(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + " ");
-        }
-        System.out.println();
     }
 
 }

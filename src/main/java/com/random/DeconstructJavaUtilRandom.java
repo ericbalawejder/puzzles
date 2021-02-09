@@ -21,15 +21,15 @@ public class DeconstructJavaUtilRandom {
 
         // 16 because 48 - 32 = 16
         // java.util.Random generates 48-bit random numbers
-        final long startOfSeed = (long)firstRandom << 16;;
+        final long startOfSeed = (long) firstRandom << 16;
         long nextSeed = 0;
 
         // we do not know the last 16-bits, so we try all. 0xFFFF = (2^16 - 1)
-        for (int i = 0; i < 0xFFFF; i++) {
+        for (int i = 0; i < (int) Math.pow(2, 16) - 1; i++) {
 
             // this algorithm is same as java.util.Random
             final long nextSeedGuess = ((startOfSeed + i) * a + c) & ((1L << 48) - 1);
-            final long secondRandomGuess = (int)(nextSeedGuess >>> 16);
+            final long secondRandomGuess = (int) (nextSeedGuess >>> 16);
 
             if (secondRandomGuess == secondRandom) {
                 nextSeed = nextSeedGuess;
@@ -43,7 +43,7 @@ public class DeconstructJavaUtilRandom {
 
             // this algorithm is same as java.util.Random
             nextSeed = (nextSeed * a + c) & ((1L << 48) - 1);
-            final int thirdRandomGuess = (int)(nextSeed >>> 16);
+            final int thirdRandomGuess = (int) (nextSeed >>> 16);
             final int thirdRandom = random.nextInt();
             if (thirdRandomGuess == thirdRandom) {
                 System.out.println("guessed third random correctly");
