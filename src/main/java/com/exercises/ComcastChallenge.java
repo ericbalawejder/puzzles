@@ -25,9 +25,10 @@ public class ComcastChallenge {
                 .mapToObj(i -> (char) i)
                 .map(Character::toLowerCase)
                 .collect(Collectors.groupingBy(
-                        Function.identity(), LinkedHashMap::new, Collectors.counting()))
+                        Function.identity(), LinkedHashMap::new,
+                        Collectors.reducing(0, e -> 1, Integer::sum)))
                 .entrySet().stream()
-                .filter(entry -> entry.getValue() == 1L)
+                .filter(entry -> entry.getValue() == 1)
                 .map(Map.Entry::getKey)
                 .findFirst()
                 .orElse(null);
