@@ -56,7 +56,7 @@ public class TopKFrequentWords {
                         () -> new PriorityQueue<>(countThenLexicographic)));
 
         return IntStream.range(0, Math.min(k, maxHeap.size()))
-                .mapToObj(i -> maxHeap.poll())
+                .mapToObj(i -> maxHeap.remove())
                 .collect(Collectors.toUnmodifiableList());
     }
 
