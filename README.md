@@ -1,1 +1,1 @@
-# java-examples
+# A collection of interview prep questions.
