@@ -9,5 +9,14 @@ public class TestStuff {
 
 
         System.out.println(new StringBuilder("eds").toString());
+
+        Integer a = 129;
+        Integer b = 129;
+        System.out.println(a.compareTo(b));
+        System.out.println(a == b);
+
+        String string = "Garbage collection is the process of automatic " +
+                "memory management during the lifetime of a program.";
+        System.out.println(string.length());
     }
 }

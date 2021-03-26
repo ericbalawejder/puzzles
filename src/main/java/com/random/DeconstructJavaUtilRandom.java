@@ -15,9 +15,9 @@ public class DeconstructJavaUtilRandom {
 
         // these are constants from the java.util.Random source code
         // multiplier
-        final long a = 0x5DEECE66DL;
+        final long multiplier = 0x5DEECE66DL;
         // addend
-        final long c = 0xBL;
+        final long addend = 0xBL;
 
         // 16 because 48 - 32 = 16
         // java.util.Random generates 48-bit random numbers
@@ -28,7 +28,7 @@ public class DeconstructJavaUtilRandom {
         for (int i = 0; i < (int) Math.pow(2, 16) - 1; i++) {
 
             // this algorithm is same as java.util.Random
-            final long nextSeedGuess = ((startOfSeed + i) * a + c) & ((1L << 48) - 1);
+            final long nextSeedGuess = ((startOfSeed + i) * multiplier + addend) & ((1L << 48) - 1);
             final long secondRandomGuess = (int) (nextSeedGuess >>> 16);
 
             if (secondRandomGuess == secondRandom) {
@@ -42,7 +42,7 @@ public class DeconstructJavaUtilRandom {
             System.out.println("seed found");
 
             // this algorithm is same as java.util.Random
-            nextSeed = (nextSeed * a + c) & ((1L << 48) - 1);
+            nextSeed = (nextSeed * multiplier + addend) & ((1L << 48) - 1);
             final int thirdRandomGuess = (int) (nextSeed >>> 16);
             final int thirdRandom = random.nextInt();
             if (thirdRandomGuess == thirdRandom) {

@@ -21,14 +21,13 @@ public class TopKFrequentWords {
 
         System.out.println(topKFrequent(words, 5));
         System.out.println(topKFrequentHeap(words, 20));
+        System.out.println(topKFrequent2(words));
         System.out.println(topKFrequentHeap2(words, 5));
         System.out.println(topKFrequentHeap3(words, 5));
     }
 
     static List<String> topKFrequent(String[] words, int k) {
-
-        final Map<String, Integer> wordCount =
-                Arrays.stream(words)
+        final Map<String, Integer> wordCount = Arrays.stream(words)
                         .collect(Collectors.collectingAndThen(
                                 Collectors.toMap(key -> key, value -> 1, Integer::sum),
                                 Collections::unmodifiableMap));
@@ -40,20 +39,36 @@ public class TopKFrequentWords {
         return candidates.subList(0, k);
     }
 
+    static List<String> topKFrequent2(String[] words) {
+        final Map<String, Integer> wordCount = Arrays.stream(words)
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toMap(key -> key, value -> 1, Integer::sum),
+                        Collections::unmodifiableMap));
+
+        final Comparator<String> frequencyThenLexicographicOrdering =
+                (w1, w2) -> wordCount.get(w1).equals(wordCount.get(w2)) ?
+                        w1.compareTo(w2) : wordCount.get(w2) - wordCount.get(w1);
+
+        return wordCount.keySet()
+                .stream()
+                .sorted(frequencyThenLexicographicOrdering)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     static List<String> topKFrequentHeap(String[] words, int k) {
         final Map<String, Integer> wordCount =
                 Arrays.stream(words)
                         .collect(Collectors.groupingBy(Function.identity(),
                                 Collectors.reducing(0, value -> 1, Integer::sum)));
 
-        final Comparator<String> countThenLexicographic =
+        final Comparator<String> frequencyThenLexicographicOrdering =
                 (w1, w2) -> wordCount.get(w1).equals(wordCount.get(w2)) ?
                         w1.compareTo(w2) : wordCount.get(w2) - wordCount.get(w1);
 
         final Queue<String> maxHeap = wordCount.keySet()
                 .stream()
                 .collect(Collectors.toCollection(
-                        () -> new PriorityQueue<>(countThenLexicographic)));
+                        () -> new PriorityQueue<>(frequencyThenLexicographicOrdering)));
 
         return IntStream.range(0, Math.min(k, maxHeap.size()))
                 .mapToObj(i -> maxHeap.remove())
