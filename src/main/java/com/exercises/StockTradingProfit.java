@@ -1,11 +1,11 @@
 package com.exercises;
 
-//Write an efficient function that takes stock_prices and returns the best profit
-//I could have made from one purchase and one sale of one share ofstock yesterday.
+// Write an efficient function that takes stock_prices and returns the best profit
+// I could have made from one purchase and one sale of one share of stock yesterday.
 public class StockTradingProfit {
 
     public static void main(String... args) {
-        int[] stockPrices = { 10, 7, 5, 8, 11, 9 };
+        int[] stockPrices = {10, 7, 5, 8, 11, 9};
         System.out.println(getMaxProfit(stockPrices));
     }
 

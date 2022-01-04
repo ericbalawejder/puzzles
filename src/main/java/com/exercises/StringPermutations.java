@@ -1,19 +1,16 @@
 package com.exercises;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
-import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class StringPermutations {
 
     public static void main(String[] args) {
-        System.out.println(getPermutations("abc"));
+        System.out.println(getPermutations("abcde"));
     }
 
     static TreeSet<String> getPermutations(String inputString) {
-
         // base case
         if (inputString.length() <= 1) {
             return new TreeSet<>(Collections.singletonList(inputString));
@@ -25,8 +22,7 @@ public class StringPermutations {
         // recursive call: get all possible permutations for all chars except last
         Set<String> permutationsOfAllCharsExceptLast = getPermutations(allCharsExceptLast);
 
-        // put the last char in all possible positions for each of the above
-        // permutations
+        // put the last char in all possible positions for each of the above permutations
         TreeSet<String> permutations = new TreeSet<>();
         for (String permutationOfAllCharsExceptLast : permutationsOfAllCharsExceptLast) {
             for (int position = 0; position <= allCharsExceptLast.length(); position++) {
@@ -35,7 +31,6 @@ public class StringPermutations {
                 permutations.add(permutation);
             }
         }
-
         return permutations;
     }
 

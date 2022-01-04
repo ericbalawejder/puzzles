@@ -21,7 +21,7 @@ public class Fibonacci {
         } else if (fibonacciValues.containsKey(n)) {
             return fibonacciValues.get(n);
         } else {
-            Long value = fibonacci(n - 1) + fibonacci(n - 2);
+            long value = fibonacci(n - 1) + fibonacci(n - 2);
             fibonacciValues.put(n, value);
             // System.out.println(fibonacciValues);
             return value;
