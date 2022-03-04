@@ -94,14 +94,12 @@ public class AuthenticationTokens {
                 }
             }
         }
-
         //find the last inputed tokentime and filter data based on expiry
         Integer lastTime = commands.get(commands.size() - 1).get(2);
         return (int) tokenIdToTokenExpiry.values().stream().filter(tokenTime -> tokenTime >= lastTime).count();
     }
 
     public static int numberOfTokens(int exp, int[][] commands) {
-
         Map<Integer, Integer> set = new HashMap<>();
         for (int[] token : commands) {
             if (token[0] == 1) {
